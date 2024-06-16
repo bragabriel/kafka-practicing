@@ -28,9 +28,9 @@ public class Producer {
             System.out.println(data.offset());
         };
 
-        for(Integer i = 0; i < 10; i++){
-            var record = new ProducerRecord("ecommerce.compras",
-            "cliente1"+i, "compras:"+ i +" reais");
+        for(Integer i = 0; i < 3; i++){
+            var record = new ProducerRecord("ecommerce.groupid.teste",
+                    "cliente1"+i, "compras:"+ i +" reais");
             producer.send(record,callback).get();
         }
         //producer.send(record, callback).get();
@@ -42,7 +42,7 @@ public class Producer {
         properties.setProperty(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         properties.setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
 
-    return properties;
+        return properties;
     }
 
 }
